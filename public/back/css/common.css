@@ -1,0 +1,12 @@
+.body_bg{
+    background-color: #222D32;
+}
+.panel .panel-heading{
+    height:40px;
+    line-height:40px;
+    text-align:center;
+    font-size:25px;
+}
+.mt-150{
+    margin-top:150px;
+}
