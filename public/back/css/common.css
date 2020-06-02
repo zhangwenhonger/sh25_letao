@@ -1,6 +1,9 @@
 .body_bg{
     background-color: #222D32;
 }
+.red{
+    color:#a94442;
+}
 /*lvha*/
 a,
 a:link,
@@ -34,6 +37,11 @@ ul,ol{
     top:0;
     background-color: #222D32;
     z-index:999;
+    transition:all 1s;
+}
+.lt-aside.hidemenu{
+    left:-180px;
+
 }
 .lt-aside .brand{
     width: 100%;
@@ -87,6 +95,10 @@ ul,ol{
 .lt-main{
     padding-left:180px;
     padding-top:50px;
+    transition: all 1s;
+}
+.lt-main.hidemenu{
+    padding-left:0;
 }
 .lt-main .lt-topbar{
     width: 100%;
@@ -96,7 +108,11 @@ ul,ol{
     left:0;
     top:0;
     padding-left:180px;
+    transition: all 1s;
 
+}
+.lt-main .lt-topbar.hidemenu{
+    padding-left:0;
 }
 .lt-main .lt-topbar a{
     width: 50px;
