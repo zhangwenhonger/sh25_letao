@@ -57,7 +57,7 @@ $(function() {
             success:function (info) {
                 console.log(info);
                 if(info.success){
-                    //关不模态框 重新渲染
+                    //关闭模态框 重新渲染
                     $("userModal").modal("hide");
                     render();
                 }
