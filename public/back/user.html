@@ -44,15 +44,45 @@
 
 <!--右侧主体部分-->
 <div class="lt-main">
+    <!--状态栏-->
     <div class="lt-topbar">
-        <a class="pull-left icon-menu"href="#"><i class="glyphicon glyphicon-align-justify"></i></a>
-        <a class="pull-right icon-logout"href="#"><i class="glyphicon glyphicon-log-out"></i></a>
+        <a class="pull-left icon-menu" href="#"><i class="glyphicon glyphicon-align-justify"></i></a>
+        <a class="pull-right icon-logout" href="#"><i class="glyphicon glyphicon-log-out"></i></a>
     </div>
+    <!--流式布局-->
     <div class="container-fluid ">
+        <!--面包屑-->
         <ol class="breadcrumb mt-20">
             <li><a href="index.html">管理系统</a></li>
             <li class="active">用户管理</li>
         </ol>
+        <!--内容-->
+        <div class="lt-content">
+            <!--表格-->
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th width="10%">序号</th>
+                        <th width="20%">用户名</th>
+                        <th width="30%">手机号</th>
+                        <th width="20%">状态</th>
+                        <th width="20%">操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <!-- 挖个坑-->
+
+                </tbody>
+            </table>
+            <!--分页，3.x的bootstrap版本，dom结构必须使用ul-->
+            <div class="text-right">
+                <ul id="paginator" class="pull-right"></ul>
+            </div>
+
+
+
+        </div>
     </div>
 </div>
 
@@ -76,12 +106,33 @@
         </div>
     </div>
 </div>
+<!--模板引擎渲染-->
+<script type="text/html" id="tpl">
+    {{ each rows v i }}
+        <tr>
+            <!--第几个=当前页第几个+前面有多少个-->
+            <td>{{ i+1+(page-1)*size }}</td>
+            <td>{{ v.username }}</td>
+            <td>{{ v.mobile }}</td>
+            <td>{{ v.isDelete === 1 ? "正常"："禁用" }}</td>
+            <td>
+                {{ if v.isDelete === 1 }}
+                    <button class="btn btn-danger">禁用</button>
+                {{ /if }}
+                {{ if v.isDelete === 0 }}
+                    <button class="btn btn-success">启用</button>
+                {{ /if }}
+            </td>
+        </tr>
+    {{ /each }}
+</script>
 
-
-<script src="./lib/jquery/jquery.min.js"></script>
-<script src="./lib/bootstrap/js/bootstrap.min.js"></script>
-<script src="./lib/bootstrap-validator/js/bootstrapValidator.min.js"></script>
+<script src="./lib/jquery/jquery.js"></script>
+<script src="./lib/bootstrap/js/bootstrap.js"></script>
+<script src="./lib/bootstrap-validator/js/bootstrapValidator.js"></script>
 <script src="./lib/nprogress/nprogress.js"></script>
+<script src="./lib/artTemplate/template-web.js"></script>
+<script src="./lib/bootstrap-paginator/bootstrap-paginator.js"></script>
 <script src="./js/common.js"></script>
 <script src="./js/user.js"></script>
 </body>
