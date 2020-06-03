@@ -114,12 +114,17 @@ ul,ol{
 .lt-main .lt-topbar.hidemenu{
     padding-left:0;
 }
-.lt-main .lt-topbar a{
+.lt-topbar .icon-menu,
+.lt-topbar .icon-logout{
     width: 50px;
-    height: 50px;
     line-height:50px;
     text-align:center;
-    font-size: 14px;
+    font-size: 18px;
     color: #fff;
 }
-.lt-main .container-fluid
+.lt-content .echarts_1,
+.lt-content .echarts_2{
+    width:48%;
+    height:400px;
+}
+
