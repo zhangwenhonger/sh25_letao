@@ -58,7 +58,7 @@ $(function() {
                 console.log(info);
                 if(info.success){
                     //关闭模态框 重新渲染
-                    $("userModal").modal("hide");
+                    $("#userModal").modal("hide");
                     render();
                 }
 

@@ -136,7 +136,7 @@
             <td>{{ i+1+(page-1)*size }}</td>
             <td>{{ v.username }}</td>
             <td>{{ v.mobile }}</td>
-            <td>{{ v.isDelete === 1 ? "正常"："禁用" }}</td>
+            <td>{{ v.isDelete == 1 ? '正常':'禁用' }}</td>
             <td data-id="{{v.id}}">
                 {{ if v.isDelete === 1 }}
                     <button class="btn btn-danger">禁用</button>
