@@ -58,6 +58,8 @@ $(function(){
         $('#dropdownText').text(txt);
         var id=$(this).data("id");
         $('[name="categoryId"]').val(id);
+    //将隐藏域校验状态，设置成校验成功状态updateStatus(字段名，校验状态，校验规则)
+    $('#form').data("bootstrapValidator").updateStatus("categoryId","VALID");
     });
 
 //4.利用文件上传插件 初始化
@@ -67,10 +69,71 @@ $(function(){
            var imgUrl=data.result.picAddr;
             $('#imgBox img').attr("src",imgUrl);
             $('[name="brandLogo"]').val(imgUrl);
+            $('#form').data("bootstrapValidator").updateStatus("brandLogo","VALID");
         }
 
     });
-//    5.表单校验
-//     6.添加按钮，阻止默认行为，通过ajax请求获取数据
+// 5.表单校验 input隐藏域校验类型 校验成功的状态
+    $('#form').bootstrapValidator({
+        //1. 指定不校验的类型，默认为[':disabled', ':hidden', ':not(:visible)'],可以不设置
+        excluded: [],
+        //2. 指定校验时的图标显示，默认是bootstrap风格
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh',
+        },
+        //3. 指定校验字段
+        fields:{
+            categoryId: {
+                validators:{
+                    notEmpty:{
+                        message:"请输入一级分类名称"
+                    }
+                }
+            },
+            brandName: {
+                validators:{
+                    notEmpty:{
+                        message:"请输入二级分类名称"
+                    }
+                }
+            },
+            brandLogo: {
+                validators:{
+                    notEmpty:{
+                        message:"请上传图片"
+                    }
+                }
+            }
+
+        }
+    })
+
+//     6.z注册表单校验成功事件，阻止默认行为，通过ajax请求获取数据重新渲染第一页
+   $("#form").on("success.form.bv",function (e) {
+        e.preventDefault();
+        $.ajax({
+            type:"post",
+            url:"/category/addSecondCategory",
+            data:$("#form").serialize(),
+            dataType:"json",
+            success:function(info){
+                if(info.success){
+                    $('#addModal').modal("hide");
+                    currentPage=1;
+                    render();
+                    //重置
+                    $('#form').data("bootstrapValidator").resetForm(true);
+                    $('#dropdownText').text("请选择一级分类");
+                    $('#imgBox img').attr("src","images/none.png");
+
+                }
+            }
+        })
+
+
+
+    })
 
 })
