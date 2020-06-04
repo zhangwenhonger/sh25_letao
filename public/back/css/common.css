@@ -42,7 +42,7 @@ ul,ol{
     z-index:999;
     transition:all 1s;
 }
-.lt-aside.hidemenu{
+.lt-aside.hidemune{
     left:-180px;
 
 }
@@ -112,6 +112,7 @@ ul,ol{
     top:0;
     padding-left:180px;
     transition: all 1s;
+    z-index:666;
 
 }
 .lt-main .lt-topbar.hidemenu{
