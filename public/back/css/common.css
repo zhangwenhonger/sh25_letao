@@ -42,7 +42,7 @@ ul,ol{
     z-index:999;
     transition:all 1s;
 }
-.lt-aside.hidemune{
+.lt-aside.hidemenu{
     left:-180px;
 
 }

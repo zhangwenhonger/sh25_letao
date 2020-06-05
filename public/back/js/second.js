@@ -62,7 +62,7 @@ $(function(){
     $('#form').data("bootstrapValidator").updateStatus("categoryId","VALID");
     });
 
-//4.利用文件上传插件 初始化
+//4.图片利用文件上传插件 初始化
     $('#fileupload').fileupload({
         dataType:"json",
         done:function(e,data){
