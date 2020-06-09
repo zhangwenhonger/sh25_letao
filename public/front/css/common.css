@@ -22,6 +22,7 @@ img{
     padding-top:45px;
     padding-bottom: 55px;
     overflow: hidden;
+    border:1px solid #ccc;
 
 }
 .lt_header{
