@@ -66,15 +66,15 @@ $(function(){
     $('.search_btn').click(function(){
         var key=$('.search_input').val().trim();
         if(key===""){
-            alert("请输入关键字");
+            mui.toast("请输入搜索关键字");
             return;
         }
         var arr=getHistory();
      //需求：
         // 1.如果有重复的，现将重复的删除，将这项添加到最前面
         // 2.长度不能超过10个
-        var index =arr.indexOf(key);
-        if(index!=-1){
+        var index = arr.indexOf(key);
+        if(index != -1){
             //说明在数组中可以找到重复的项，且索引为index
             arr.splice(index,1)
         }
@@ -90,7 +90,6 @@ $(function(){
 
     });
 
-//功能5：跳转功能
 
 })
 
