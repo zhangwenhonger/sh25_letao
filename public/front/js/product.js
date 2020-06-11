@@ -34,13 +34,13 @@ $(function(){
     $('#addCart').click(function(){
           var size=$('.lt_size span.current').text();
           var num=$('.mui-numbox-input').val();
-          if(!size){
+          if( !size ){
               mui.toast("请选择尺码");
               return;
           }
           $.ajax({
-              type:"get",
-              url:"",
+              type:"post",
+              url:"/cart/addCart",
               data:{
                   productId:productId,
                   num:num,
@@ -48,6 +48,7 @@ $(function(){
               },
               dataType: "json",
               success:function (info) {
+                  console.log(info);
               //加入购物车需要登录
               // (1)未登录
                   if(info.error===400){
