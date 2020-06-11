@@ -84,39 +84,47 @@ $(function () {
         }
     });
 
-//
-// //功能2：点击搜索按钮，实现搜索功能
-//     $('.search_btn').click(function () {
-//         var key = $(".search_input").val();
-//         if (key.trim() === '') {
-//             mui.toast("请输入关键字", {duration: 2000});
-//             return;
-//         }
-//         render();
-//
-//         var history = localStorage.getItem("search_list") || '[]';
-//         var arr = JSON.parse(history);
-//         var index = arr.indexOf(key);
-//         if (index != -1) {
-//             arr.splice(index, 1);
-//         }
-//         if (arr.length >= 10) {
-//             arr.pop();
-//         }
-//         arr.unshift(key);
-//         localStorage.setItem("search_list", JSON.stringify(arr));
-//
-//     });
-//
-// //功能3：添加排序功能
-//     $(".lt_sort a[data-type]").click(function () {
-//         if ($(this).hasClass("current")) {
-//             $(".lt_sort").find("i").toggleClass("fa-angle-down").toggleClass("fa-angle-up");
-//         } else {
-//             $(this).addClass("current").siblings().removeClass("current");
-//         }
-//         render();
-//     });
 
+//功能2：点击搜索按钮，实现搜索功能
+    $('.search_btn').click(function () {
+        var key = $(".search_input").val();
+        if (key.trim() === '') {
+            mui.toast("请输入关键字", {duration: 2000});
+            return;
+        }
+        // 执行一次下拉刷新
+        mui(".mui-scroll-wrapper").pullRefresh().pulldownLoading();
+
+        var history = localStorage.getItem("search_list") || '[]';
+        var arr = JSON.parse(history);
+        var index = arr.indexOf(key);
+        if (index != -1) {
+            arr.splice(index, 1);
+        }
+        if (arr.length >= 10) {
+            arr.pop();
+        }
+        arr.unshift(key);
+        localStorage.setItem("search_list", JSON.stringify(arr));
+
+    });
+
+//功能3：添加排序功能
+//     mui认为在下拉刷新和上拉加载容器中，使用click会有300ms延迟的话，性能不好，用tap
+    $(".lt_sort a[data-type]").on("tap",function () {
+        if ($(this).hasClass("current")) {
+            $(".lt_sort").find("i").toggleClass("fa-angle-down").toggleClass("fa-angle-up");
+        } else {
+            $(this).addClass("current").siblings().removeClass("current");
+        }
+        mui(".mui-scroll-wrapper").pullRefresh().pulldownLoading();
+
+    });
+
+//功能4：事件委托，点击每个商品，跳转到详情页
+    $(".lt_product").on("tap",".it_product_item",function(){
+        var id=$(this).data("id");
+        location.href="product.html?productId="+id;
+    })
 
 })
